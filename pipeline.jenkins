@@ -12,29 +12,17 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("PreDeploy") {
+        stage("create docker image") {
             steps {
-                echo " ============== PreDeploy =================="
-                 sh '''
-                
-                 '''
-                }
-            }
-        }
-        stage("pwd") {
-            steps {
-                echo " ============== start building image =================="
+                echo " ============== login ssh =================="
                 dir ('conf') {
-                	sh 'pwd'
+                	sh 'ssh root@nginx \'hostname\''
                 }
             }
         }
-        stage("pwd") {
+stage("Second step") {
             steps {
-                echo " ============== start pushing image =================="
-                sh '''
-                pwd
-                '''
+                sh 'ssh root@nginx \'uptime\''
             }
         }
     }
