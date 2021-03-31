@@ -11,16 +11,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stages {
-        
-        stage("ls") {
-            steps {
-                echo " ============== start pushing image =================="
-                sh 'ls-la'
-            }
-        }
-    }
-          
+    stages {         
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
