@@ -1,7 +1,6 @@
 #!groovy
 // Run docker build
 properties([disableConcurrentBuilds()])
-
 pipeline {
     agent { 
         label 'master'
@@ -11,7 +10,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-        
+    stages {         
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
@@ -26,7 +25,8 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('conf') {
-                	sh 'cp nginx.conf /etc/nginx'
+                	sh 'ls'
+                	sh ' cat nginx.conf'
                 }
             }
         }
