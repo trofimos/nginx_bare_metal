@@ -14,7 +14,7 @@ pipeline {
         stage("ssh login") {
             steps {
                 echo " ============== ssh login =================="
-                withCredentials([username(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD')]) {
+                withCredentials([username(credentialsId: 'strofimo-user', passwordVariable: 'PASSWORD')]) {
                     sh """
                      cat ~/.ssh/id_rsa.pub |sshpass -p $PASSWORD ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
                     """
