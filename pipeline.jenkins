@@ -12,6 +12,8 @@ pipeline {
         timestamps()
     }
     stages {
+        
+        
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
@@ -26,7 +28,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('conf') {
-                	sh 'ls-la'
+                	sh 'ssh root@nginx \'hostname\''
                 }
             }
         }
