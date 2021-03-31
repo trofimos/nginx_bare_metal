@@ -1,4 +1,5 @@
 #!groovy
+// Run docker build
 properties([disableConcurrentBuilds()])
 
 pipeline {
@@ -11,15 +12,31 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("ssh login") {
+        stage("docker login") {
             steps {
-                echo " ============== ssh login =================="
-                withCredentials([username(credentialsId: 'strofimo-user', passwordVariable: 'PASSWORD')]) {
-                    sh "
-                     cat ~/.ssh/id_rsa.pub |sshpass -p $PASSWORD ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
-                    "
+                echo " ============== docker login =================="
+                withCredentials([usernamePassword(credentialsId: 'strofimo-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    cat ~/.ssh/id_rsa.pub |sshpass -p $PASSWORD ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
+                    """
                 }
             }
         }
-     
+        stage("create docker image") {
+            steps {
+                echo " ============== start building image =================="
+                dir ('Static') {
+                	sh ''
+                }
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                
+                '''
+            }
+        }
+    }
 }
