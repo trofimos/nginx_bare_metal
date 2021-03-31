@@ -37,6 +37,8 @@ pipeline {
                 echo " ============== copy config =================="
                 dir ('conf') {
                 	sh 'scp nginx.conf root@nginx:/etc/nginx/'
+                    sh 'ssh root@nginx \'systemctl restart nginx.service\''
+                    
                 }
             }
         }
