@@ -43,7 +43,6 @@ pipeline {
         stage("copy static") {
             steps {
                 echo " ============== copy static =================="
-                dir ('http')
                 sh 'scp -r http root@nginx:/usr/share/nginx/'
             }
         }
