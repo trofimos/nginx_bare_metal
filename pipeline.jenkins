@@ -41,9 +41,9 @@ pipeline {
                 }
             }
         }
-        stage("docker push") {
+        stage("post stage") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== post stage =================="
                 sh '''
                 
                 '''
