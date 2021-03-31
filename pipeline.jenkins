@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('conf') {
-                	sh 'ssh root@nginx cp nginx.conf /etc/nginx/'
+                	sh 'ls'
                 }
             }
         }
