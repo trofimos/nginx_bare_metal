@@ -11,7 +11,16 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stages {         
+    stages {
+        stage("ssh root@nginx") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh 'ssh root@nginx'
+                
+            }
+        }
+    }
+        
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
@@ -26,7 +35,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('conf') {
-                	sh ' cat nginx.conf'
+                	sh 'cp nginx.conf /etc/nginx'
                 }
             }
         }
