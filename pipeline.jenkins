@@ -10,7 +10,16 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stages {         
+    stages {
+        stage("stage 0") {
+            steps {
+                echo " ============== stage 0 =================="
+                dir ('conf') {
+                	sh 'ls'
+                	sh ' cat nginx.conf'
+                }
+            }
+        }
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
