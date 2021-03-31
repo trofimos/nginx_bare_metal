@@ -41,12 +41,4 @@ pipeline {
             }
         }
         
-        stage("copy static") {
-            steps {
-                echo " ============== copy static =================="
-                dir ('conf') {
-                	sh
-                }
-            }
-        }
 }
