@@ -7,7 +7,7 @@ pipeline {
         }
     triggers { pollSCM('* * * * *') }
     options {
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
     stages {
@@ -31,14 +31,25 @@ pipeline {
                 }
             }
         }
-        
+
         stage("copy config") {
             steps {
+                echo " ============== start building image =================="
                 echo " ============== copy config =================="
                 dir ('conf') {
+                	sh 'ls'
+                	sh ' cat nginx.conf'
                 	sh 'scp nginx.conf root@nginx:/usr/share/nginx/'
                 }
             }
         }
-        
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                
+                '''
+            }
+        }
+    }
 }
