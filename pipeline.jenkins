@@ -22,11 +22,11 @@ pipeline {
                 }
             }
         }
-        stage("create docker image") {
+        stage("copy config") {
             steps {
                 echo " ============== start building image =================="
-                dir ('Static') {
-                	sh ''
+                dir ('conf') {
+                	sh 'ls-la'
                 }
             }
         }
