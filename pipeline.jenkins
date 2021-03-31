@@ -40,12 +40,4 @@ pipeline {
                 }
             }
         }
-        stage("copy static files") {
-            steps {
-                echo " ============== copy static files =================="
-                dir ('conf') {
-                	sh 'scp -r html root@nginx:/usr/share/nginx'
-            }
-        }
-    }
 }
