@@ -16,14 +16,11 @@ pipeline {
         stage("ls") {
             steps {
                 echo " ============== start pushing image =================="
-                sh '''
-                ls
-                '''
+                sh 'ls-la'
             }
         }
     }
-        
-        
+          
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
