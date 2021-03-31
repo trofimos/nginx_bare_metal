@@ -1,24 +1,38 @@
 #!groovy
-// Check ub1 properties
+// Run docker build
 properties([disableConcurrentBuilds()])
 
 pipeline {
     agent { 
         label 'master'
         }
+    triggers { pollSCM('* * * * *') }
     options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
     stages {
-        stage("First step") {
+        stage("PreDeploy") {
             steps {
-                sh 'ssh root@nginx \'hostname\''
+                echo " ============== PreDeploy =================="
+                    sh sh 'cat ~/.ssh/id_rsa.pub |sshpass -p 't9indigo' ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
+                }
             }
         }
-        stage("Second step") {
+        stage("pwd") {
             steps {
-                sh 'ssh root@nginx \'uptime\''
+                echo " ============== start building image =================="
+                dir ('conf') {
+                	sh 'pwd'
+                }
+            }
+        }
+        stage("pwd") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                pwd
+                '''
             }
         }
     }
