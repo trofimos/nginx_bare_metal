@@ -11,17 +11,30 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("create docker image") {
+        stage("ssh login") {
             steps {
-                echo " ============== login ssh =================="
-                dir ('conf') {
-                	sh 'ssh root@nginx \'hostname\''
+                echo " ============== ssh login =================="
+                withCredentials([username(credentialsId: 'dockerhub', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                     cat ~/.ssh/id_rsa.pub |sshpass -p $PASSWORD ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
+                    """
                 }
             }
         }
-stage("Second step") {
+        stage("create docker image") {
             steps {
-                sh 'ssh root@nginx \'uptime\''
+                echo " ============== start building image =================="
+                dir ('Static') {
+                	sh 'ls'
+                }
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                ls
+                '''
             }
         }
     }
