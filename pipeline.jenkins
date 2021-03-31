@@ -34,10 +34,10 @@ pipeline {
         
         stage("copy config") {
             steps {
-                echo " ============== start building image =================="
+                echo " ============== copy config =================="
                 dir ('conf') {
                 	sh 'ls'
-                	sh ' cat nginx.conf'
+                	sh 'scp nginx.conf root@nginx:/usr/share/nginx/'
                 }
             }
         }
