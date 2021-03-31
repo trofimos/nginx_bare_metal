@@ -36,8 +36,20 @@ pipeline {
             steps {
                 echo " ============== copy config =================="
                 dir ('conf') {
+                	sh 'ls'
                 	sh 'scp nginx.conf root@nginx:/usr/share/nginx/'
                 }
             }
         }
+        stage("docker push") {
+        stage("post stage") {
+            steps {
+                echo " ============== start pushing image =================="
+                echo " ============== post stage =================="
+                sh '''
+                
+                '''
+            }
+        }
+    }
 }
