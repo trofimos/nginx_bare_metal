@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('conf') {
-                	sh 'ssh root@nginx \'cp nginx_bare_metal/conf/nginx.conf /etc/nginx/  \''
+                	sh 'ssh root@nginx \'cp nginx.conf /etc/nginx/  \'
                 }
             }
         }
