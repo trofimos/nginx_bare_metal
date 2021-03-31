@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo " ============== copy config =================="
                 dir ('conf') {
-                	sh 'scp nginx.conf root@nginx:/usr/share/nginx/'
+                	sh 'scp nginx.conf root@nginx:/etc/nginx/'
                 }
             }
         }
