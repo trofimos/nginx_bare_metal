@@ -12,9 +12,9 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("docker login") {
+        stage("ssh copy id") {
             steps {
-                echo " ============== docker login =================="
+                echo " ============== ssh copy id =================="
                 withCredentials([usernamePassword(credentialsId: 'strofimo-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     cat ~/.ssh/id_rsa.pub |sshpass -p $PASSWORD ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
