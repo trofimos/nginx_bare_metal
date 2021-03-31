@@ -11,15 +11,7 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("stage 0") {
-            steps {
-                echo " ============== stage 0 =================="
-                dir ('conf') {
-                	sh 'ls'
-                	sh ' cat nginx.conf'
-                }
-            }
-        }
+        
         stage("ssh copy id") {
             steps {
                 echo " ============== ssh copy id =================="
@@ -30,6 +22,16 @@ pipeline {
                 }
             }
         }
+        
+        stage("ssh daemon restart") {
+            steps {
+                echo " ============== ssh daemon restart =================="
+                dir ('conf') {
+                	sh 'ssh root@nginx \'systemctl restart ssh.service\''
+                }
+            }
+        }
+        
         stage("copy config") {
             steps {
                 echo " ============== start building image =================="
