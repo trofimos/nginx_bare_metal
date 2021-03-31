@@ -15,7 +15,9 @@ pipeline {
         stage("PreDeploy") {
             steps {
                 echo " ============== PreDeploy =================="
-                 sh 'cat ~/.ssh/id_rsa.pub |sshpass -p 't9indigo' ssh root@nginx 'cat >> ~/.ssh/authorized_keys'
+                 sh '''
+                
+                 '''
                 }
             }
         }
