@@ -21,21 +21,5 @@ pipeline {
                 }
             }
         }
-        stage("create docker image") {
-            steps {
-                echo " ============== start building image =================="
-                dir ('Static') {
-                	sh 'ls'
-                }
-            }
-        }
-        stage("docker push") {
-            steps {
-                echo " ============== start pushing image =================="
-                sh '''
-                ls
-                '''
-            }
-        }
-    }
+     
 }
