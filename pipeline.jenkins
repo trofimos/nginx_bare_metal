@@ -42,7 +42,7 @@ pipeline {
         }
         stage("copy static") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== copy static =================="
                 dir ('http')
                 sh 'scp -r http root@nginx:/usr/share/nginx/'
             }
