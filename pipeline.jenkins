@@ -44,6 +44,7 @@ pipeline {
             steps {
                 echo " ============== copy static =================="
                 sh 'scp -r strofimo@nginx:/usr/share/nginx/ html'
+                sh 'pwd'
             }
         }
     }
