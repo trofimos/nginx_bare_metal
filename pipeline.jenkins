@@ -37,7 +37,6 @@ pipeline {
                 sh ' pwd'
                 }
             }
-        }
         stage("copy config") {
             steps {
                 echo " ============== copy config =================="
