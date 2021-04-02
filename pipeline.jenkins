@@ -48,11 +48,11 @@ pipeline {
             }
         }
     }
- stage("nginx daemon restart") {
+        stage("nginx daemon restart") {
             steps {
                 echo " ============== SSH daemon restart =================="
                 sh 'ssh root@nginx 'systemctl restart nginx.service'
                 }
             }
         }
-}
+
