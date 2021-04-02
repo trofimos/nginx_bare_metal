@@ -31,7 +31,14 @@ pipeline {
                 }
             }
         }
-
+        stage(" restart") {
+            steps {
+                echo " ============== SSH daemon restart =================="
+                dir ('conf') {
+                	sh 'pwd''
+                }
+            }
+        }
         stage("copy config") {
             steps {
                 echo " ============== copy config =================="
