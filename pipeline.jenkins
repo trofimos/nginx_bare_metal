@@ -37,7 +37,6 @@ pipeline {
                 echo " ============== copy config =================="
                 dir ('conf') {
                 	sh 'scp nginx.conf root@nginx:/etc/nginx/'
-                    sh 'ssh root@nginx \'systemctl restart nginx.service\''
                     
                 }
             }
@@ -49,5 +48,12 @@ pipeline {
             }
         }
     }
- 
+ stage("ssh daemon restart") {
+            steps {
+                echo " ============== SSH daemon restart =================="
+                dir ('conf') {
+                	sh 'ssh root@nginx \'systemctl restart nginx.service\''
+                }
+            }
+        }
 }
