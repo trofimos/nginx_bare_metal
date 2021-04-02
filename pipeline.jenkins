@@ -31,11 +31,10 @@ pipeline {
                 }
             }
         }
-        stage(" restart") {
+        stage("copy") {
             steps {
-                echo " ============== SSH daemon restart =================="
-                dir ('conf') {
-                	sh 'pwd''
+                echo " ============== copy static =================="
+                sh ' pwd'
                 }
             }
         }
